@@ -22,7 +22,7 @@ export async function setUserData() {
   }
 }
 
-export let allowListedIds = ['SceneAdmin', 'ToonPunk']
+export const allowListedIds = ['SceneAdmin', 'ToonPunk']
 
 export const sceneMessageBus = new MessageBus()
 
@@ -40,8 +40,8 @@ export async function initiateVJUI() {
   if (await isPreviewMode()) {
     authorized = true
   } else {
-    for (let id of allowListedIds) {
-      if (userData && id == userData.displayName) {
+    for (const id of allowListedIds) {
+      if (userData && id === userData.displayName) {
         authorized = true
         break
       }
@@ -53,7 +53,7 @@ export async function initiateVJUI() {
       'Announcements',
       (e: string) => {
         sceneMessageBus.emit('announcement', {
-          text: e,
+          text: e
         })
       },
       'Send',
@@ -66,7 +66,7 @@ export async function initiateVJUI() {
       'Digital Bouncer',
       (e: string) => {
         sceneMessageBus.emit('kick', {
-          player: e,
+          player: e
         })
       },
       'Kick',
@@ -111,12 +111,12 @@ sceneMessageBus.on('announcement', (e) => {
   ui.displayAnnouncement(e.text)
 })
 
-sceneMessageBus.on('kick', async (e) => {
+sceneMessageBus.on('kick', async (_e) => {
   if (!userData) {
     await setUserData()
   }
 
-  // if (e.player == userData.displayName) {
-  movePlayerTo({ x: 0, y: 5, z: 0 })
+  // if (e.player === userData.displayName) {
+  movePlayerTo({ x: 0, y: 5, z: 0 }).catch((error) => log(error))
   // }
 })

@@ -1,6 +1,6 @@
 import { initiateVJUI } from './bouncerUI'
 
-initiateVJUI()
+initiateVJUI().catch((error) => log(error))
 
 // ground
 const bermudaGrass = new Entity('bermudaGrass')
@@ -11,7 +11,7 @@ bermudaGrass.addComponentOrReplace(
   new Transform({
     position: new Vector3(8, 0, 8),
     rotation: new Quaternion(0, 0, 0, 1),
-    scale: new Vector3(1, 1, 1),
+    scale: new Vector3(1, 1, 1)
   })
 )
 engine.addEntity(bermudaGrass)
@@ -22,7 +22,7 @@ shopEmissive.addComponentOrReplace(
   new Transform({
     position: new Vector3(9.5, 0, 8),
     rotation: new Quaternion(0, 0, 0, 1),
-    scale: new Vector3(1, 1, 1),
+    scale: new Vector3(1, 1, 1)
   })
 )
 shopEmissive.addComponentOrReplace(new GLTFShape('models/Shop_Emissive.glb'))
