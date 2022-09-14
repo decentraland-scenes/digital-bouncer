@@ -116,7 +116,7 @@ sceneMessageBus.on('kick', async (_e) => {
     await setUserData()
   }
 
-  // if (e.player === userData.displayName) {
-  movePlayerTo({ x: 0, y: 5, z: 0 }).catch((error) => log(error))
-  // }
+  if (e.player === userData.displayName) {
+    movePlayerTo({ x: 0, y: 5, z: 0 }).catch((error) => log(error))
+  }
 })
